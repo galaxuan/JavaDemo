@@ -1,0 +1,49 @@
+package com.example.demo.interceptor;
+
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@Configuration
+/**
+ *@Description:
+ *@Author: 王刚
+ *@date: 2019-3-7
+ */
+public class MyInterceptor extends WebMvcConfigurationSupport {
+    @Override
+    /**
+     *@Description:
+     *@Param: [registry]
+     *@return: void
+     *@Author: 王刚
+     *@date: 2019-3-7
+     */
+    public void addInterceptors(InterceptorRegistry registry) {
+
+        HandlerInterceptor inter = new HandlerInterceptor() {
+            @Override
+            public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+                System.out.println("拦截！！！");
+                return true;
+            }
+
+            @Override
+            public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+
+            }
+
+            @Override
+            public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+
+            }
+        };
+        registry.addInterceptor(inter);
+    }
+}
