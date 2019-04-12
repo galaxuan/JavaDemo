@@ -13,6 +13,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="javademo" target="1.5" />
       <module name="mybatis" target="1.7" />
     </bytecodeTargetLevel>
   </component>
