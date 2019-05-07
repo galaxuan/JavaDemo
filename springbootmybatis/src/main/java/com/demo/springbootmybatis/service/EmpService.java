@@ -2,7 +2,6 @@ package com.demo.springbootmybatis.service;
 
 import com.demo.springbootmybatis.entity.Emp;
 import com.demo.springbootmybatis.mapper.EmpMapper;
-import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,7 +30,7 @@ public class EmpService {
         param.put("dname", dname);
         param.put("sal", sal);
         return empMapper.findDepts(param);
-    }
+   }
 
     @Transactional(rollbackFor = Exception.class)
     public void createEmp(Emp emp) {
