@@ -65,4 +65,9 @@ public class EmpController {
 
         return "删除成功！111222";
     }
+
+    @RequestMapping("/emp/hello")
+    public String hello() {
+        return "heoee";
+    }
 }
