@@ -24,7 +24,6 @@
         </selectKey>
     </insert>
 
-
     <update id="updateEmp" parameterType="com.demo.springbootmybatis.entity.Emp">
         UPDATE `emp` SET `ename`=#{ename}, `job`=#{job},
          `mgr`=#{mgr}, `hiredate`=#{hiredate}, `sal`=#{sal}, `comm`=#{comm},
