@@ -63,7 +63,7 @@ public class EmpController {
     public String delete(Integer empno) {
         empService.deleteEmp(empno);
 
-        return "删除成功！111222";
+        return "删除成功！";
     }
 
     @RequestMapping("/emp/hello")
