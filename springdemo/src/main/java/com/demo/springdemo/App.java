@@ -19,7 +19,7 @@ public class App {
         //IUserDao userdao = new UserDaoImpl();
         //userdao.add();
 
-        ApplicationContext context1 = new ClassPathXmlApplicationContext("beans.xml");
+        //ApplicationContext context1 = new ClassPathXmlApplicationContext("beans.xml");
         //ApplicationContext context2 = new FileSystemXmlApplicationContext("D:\\Java\\javademo\\springdemo\\src\\main\\resources\\beans.xml");
 
         //new 对象
@@ -28,20 +28,22 @@ public class App {
 
         //静态工厂
         //IUserDao userService2 = UserServiceFactory1.createUserService();
-        IUserDao userService2 = (IUserDao) context1.getBean("userService2");
-        userService2.add();
+        //IUserDao userService2 = (IUserDao) context1.getBean("userService2");
+        //userService2.add();
 
         //实例工厂
         //1.创建工厂
         //UserServiceFactory2 factory2 = new UserServiceFactory2();
         //IUserDao userService3 = factory2.createUserService();
 
-        IUserDao userService3 = (IUserDao) context1.getBean("userService3");
-        userService3.add();
+        //IUserDao userService3 = (IUserDao) context1.getBean("userService3");
+        //userService3.add();
 
         //AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext("com.demo.springdemo.dao");
         //UserDaoImpl daoImpl=applicationContext.getBean("UserDaoImpl",UserDaoImpl.class);
         //System.out.println(daoImpl);
         //applicationContext.close();
+
+        System.out.println("1");
     }
 }
