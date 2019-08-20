@@ -1,5 +1,6 @@
 package com.demo.springdemo.service;
 
+import com.demo.springdemo.dao.UserDao;
 import org.omg.CORBA.PUBLIC_MEMBER;
 
 /**
@@ -10,9 +11,11 @@ import org.omg.CORBA.PUBLIC_MEMBER;
  */
 public class UserService {
 
-    public String name;
+    private String name;
 
-    public Integer age;
+    private Integer age;
+
+    private UserDao userDao;
 
     public String getName() {
         return name;
@@ -30,6 +33,14 @@ public class UserService {
         this.age = age;
     }
 
+    public UserDao getUserDao() {
+        return userDao;
+    }
+
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
     public UserService() {
         System.out.println("new UserService");
     }
@@ -43,6 +54,11 @@ public class UserService {
     public void print() {
         System.out.println("name:" + name);
         System.out.println("age:" + age);
+    }
+
+    public void save() {
+        System.out.println("UserService.save()....");
+        userDao.save();
     }
 
     public void findUser() {

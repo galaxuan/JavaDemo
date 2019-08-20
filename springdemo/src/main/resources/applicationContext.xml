@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util" xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-                        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+                        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
 
     <bean id="HelloWorld" class="com.demo.springdemo.action.HelloWorld">
         <property name="name" value="Spring"></property>
@@ -17,5 +18,121 @@
     <bean id="userService2" class="com.demo.springdemo.service.UserService">
         <constructor-arg value="zhou" index="0"></constructor-arg>
         <constructor-arg value="32" index="1"></constructor-arg>
+    </bean>
+
+    <bean id="specialCharacter" class="com.demo.springdemo.action.HelloWorld">
+        <property name="name">
+            <value><![CDATA[<Spring Hello World>]]></value>
+        </property>
+    </bean>
+
+    <bean id="userServiceInnerBean" class="com.demo.springdemo.service.UserService">
+        <property name="userDao">
+            <bean class="com.demo.springdemo.dao.UserDao">
+                <property name="password" value="123456"></property>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="userServiceNull" class="com.demo.springdemo.service.UserService">
+        <property name="name">
+            <null/>
+        </property>
+        <property name="age" value="40"></property>
+    </bean>
+
+    <bean id="userDao" class="com.demo.springdemo.dao.UserDao">
+    </bean>
+
+    <!--级联属性 -->
+    <bean id="userSericeCascade" class="com.demo.springdemo.service.UserService">
+        <property name="userDao" ref="userDao"></property>
+        <property name="userDao.password" value="123321"></property>
+    </bean>
+
+    <bean id="goods1" class="com.demo.springdemo.entity.Goods">
+        <property name="goodsName" value="苹果"></property>
+    </bean>
+
+    <bean id="goods2" class="com.demo.springdemo.entity.Goods">
+        <property name="goodsName" value="小米"></property>
+    </bean>
+
+    <bean id="goods3" class="com.demo.springdemo.entity.Goods">
+        <property name="goodsName" value="华为"></property>
+    </bean>
+
+    <bean id="goods4" class="com.demo.springdemo.entity.Goods">
+        <property name="goodsName" value="魅族"></property>
+    </bean>
+
+    <!--List集合-->
+    <bean id="goodsCartList" class="com.demo.springdemo.entity.GoodsCart">
+        <property name="goods">
+            <list>
+                <ref bean="goods1"/>
+                <ref bean="goods2"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="goodsCart1" class="com.demo.springdemo.entity.GoodsCart">
+        <property name="goods">
+            <list>
+                <ref bean="goods1"/>
+                <ref bean="goods2"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="goodsCart2" class="com.demo.springdemo.entity.GoodsCart">
+        <property name="goods">
+            <list>
+                <ref bean="goods3"/>
+                <ref bean="goods4"/>
+            </list>
+        </property>
+    </bean>
+
+    <!--Set集合-->
+    <bean id="userSet" class="com.demo.springdemo.entity.User">
+        <property name="goodsCarts">
+            <set>
+                <ref bean="goodsCart1"/>
+                <ref bean="goodsCart2"/>
+            </set>
+        </property>
+    </bean>
+    <!--Map集合-->
+    <bean id="goodsMap" class="com.demo.springdemo.entity.Goods">
+        <property name="skus">
+            <map>
+                <entry key="red" value="5999"></entry>
+                <entry key="blue" value="5899"></entry>
+                <entry key="black" value="5898"></entry>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="dataSource" class="com.demo.springdemo.utils.DataSource">
+        <property name="config">
+            <props>
+                <prop key="url">1</prop>
+                <prop key="driver">2</prop>
+                <prop key="username">3</prop>
+                <prop key="password">4</prop>
+            </props>
+        </property>
+    </bean>
+
+    <util:list id="utilList">
+        <value>刘德华</value>
+        <value>张学友</value>
+        <value>郭富城</value>
+        <value>黎明</value>
+    </util:list>
+
+    <bean id="userP" class="com.demo.springdemo.entity.User" p:id="10" p:userName="荔枝">
+
     </bean>
 </beans>

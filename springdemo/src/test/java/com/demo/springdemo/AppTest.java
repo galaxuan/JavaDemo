@@ -4,9 +4,19 @@ import static org.junit.Assert.assertTrue;
 
 import com.demo.springdemo.action.HelloWorld;
 import com.demo.springdemo.action.LoginAction;
+import com.demo.springdemo.entity.Goods;
+import com.demo.springdemo.entity.GoodsCart;
+import com.demo.springdemo.entity.User;
 import com.demo.springdemo.service.UserService;
+import com.demo.springdemo.utils.DataSource;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.security.Key;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
 
 /**
  * Unit test for simple App.
@@ -42,7 +52,7 @@ public class AppTest {
         //初始化配置文件：Spring加载配置文件
         ClassPathXmlApplicationContext cxt = new ClassPathXmlApplicationContext("applicationContext.xml");
         //获得Spring上下文环境的对象
-        HelloWorld helloWorld = (HelloWorld)cxt.getBean("HelloWorld");
+        HelloWorld helloWorld = (HelloWorld) cxt.getBean("HelloWorld");
         //执行对象的方法
         helloWorld.hello();
     }
@@ -63,8 +73,146 @@ public class AppTest {
         //初始化配置文件：Spring加载配置文件
         ClassPathXmlApplicationContext cxt = new ClassPathXmlApplicationContext("applicationContext.xml");
         //获得Spring上下文环境的对象
-        UserService userService =(UserService)cxt.getBean("userService2");
+        UserService userService = (UserService) cxt.getBean("userService2");
         //执行对象的方法
         userService.print();
+    }
+
+    /**
+     * @Description: 操作特殊字符
+     * @Param:
+     * @return:
+     * @Author: wanggang
+     * @date: 2019-8-12
+     */
+    @Test
+    public void testSpecialCharacter() {
+        //初始化配置文件：Spring加载配置文件
+        ClassPathXmlApplicationContext cxt = new ClassPathXmlApplicationContext("applicationContext.xml");
+        //获得Spring上下文环境的对象
+        HelloWorld helloWorld = (HelloWorld) cxt.getBean("specialCharacter");
+        //执行对象的方法
+        helloWorld.hello();
+    }
+
+    @Test
+    public void testInnerBean() {
+        //初始化配置文件：Spring加载配置文件
+        ClassPathXmlApplicationContext cxt = new ClassPathXmlApplicationContext("applicationContext.xml");
+        //获得Spring上下文环境的对象
+        UserService userService = (UserService) cxt.getBean("userServiceInnerBean");
+        //执行对象的方法
+        userService.save();
+    }
+
+
+    @Test
+    public void testUserSericeCascade() {
+        //初始化配置文件：Spring加载配置文件
+        ClassPathXmlApplicationContext cxt = new ClassPathXmlApplicationContext("applicationContext.xml");
+        //获得Spring上下文环境的对象
+        UserService userService = (UserService) cxt.getBean("userSericeCascade");
+        //执行对象的方法
+        userService.getUserDao().save();
+    }
+
+    /**
+     * List集合
+     */
+    @Test
+    public void testGoodsCartList() {
+        //初始化配置文件：Spring加载配置文件
+        ClassPathXmlApplicationContext cxt = new ClassPathXmlApplicationContext("applicationContext.xml");
+        //获得Spring上下文环境的对象
+        GoodsCart goodsCart = (GoodsCart) cxt.getBean("goodsCartList");
+        //执行对象的方法
+        List<Goods> list = goodsCart.getGoods();
+
+        for (Goods g : list) {
+            System.out.println(g.getGoodsName());
+        }
+    }
+
+    /**
+     * Set集合
+     */
+    @Test
+    public void testUserSet() {
+        //初始化配置文件：Spring加载配置文件
+        ClassPathXmlApplicationContext cxt = new ClassPathXmlApplicationContext("applicationContext.xml");
+        //获得Spring上下文环境的对象
+        User user = (User) cxt.getBean("userSet");
+        //执行对象的方法
+        Set<GoodsCart> goodsCarts = user.getGoodsCarts();
+
+        for (GoodsCart goodsCart : goodsCarts) {
+            for (Goods g : goodsCart.getGoods()) {
+                System.out.println(g.getGoodsName());
+            }
+
+        }
+    }
+
+    /**
+     * Map集合
+     */
+    @Test
+    public void testGoodsMap() {
+        //初始化配置文件：Spring加载配置文件
+        ClassPathXmlApplicationContext cxt = new ClassPathXmlApplicationContext("applicationContext.xml");
+        //获得Spring上下文环境的对象
+        Goods goods = (Goods) cxt.getBean("goodsMap");
+        //执行对象的方法
+        Map<String, Object> map = goods.getSkus();
+
+        for (String key : map.keySet()) {
+            System.out.println("key:" + key + " value:" + map.get(key));
+        }
+    }
+
+    /**
+     * Map集合
+     */
+    @Test
+    public void testDataSource() {
+        //初始化配置文件：Spring加载配置文件
+        ClassPathXmlApplicationContext cxt = new ClassPathXmlApplicationContext("applicationContext.xml");
+        //获得Spring上下文环境的对象
+        DataSource dataSource = (DataSource) cxt.getBean("dataSource");
+        //执行对象的方法
+        Properties config = dataSource.getConfig();
+
+        for (Object key : config.keySet()) {
+            System.out.println(config.get(key));
+        }
+    }
+
+
+    /**
+     * util集合
+     */
+    @Test
+    public void testUtilList() {
+        //初始化配置文件：Spring加载配置文件
+        ClassPathXmlApplicationContext cxt = new ClassPathXmlApplicationContext("applicationContext.xml");
+        //获得Spring上下文环境的对象
+        List<String> list = (List) cxt.getBean("utilList");
+        //执行对象的方法
+        for (String key : list) {
+            System.out.println(key);
+        }
+    }
+
+    /**
+     * p标签
+     */
+    @Test
+    public void testUserP() {
+        //初始化配置文件：Spring加载配置文件
+        ClassPathXmlApplicationContext cxt = new ClassPathXmlApplicationContext("applicationContext.xml");
+        //获得Spring上下文环境的对象
+        User user = (User) cxt.getBean("userP");
+        //执行对象的方法
+        System.out.println(user.getUserName());
     }
 }
