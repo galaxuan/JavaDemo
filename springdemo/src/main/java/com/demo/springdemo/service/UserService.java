@@ -15,6 +15,8 @@ public class UserService {
 
     private Integer age;
 
+    private String type;
+
     private UserDao userDao;
 
     public String getName() {
@@ -31,6 +33,14 @@ public class UserService {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public UserDao getUserDao() {

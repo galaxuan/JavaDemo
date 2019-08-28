@@ -133,6 +133,9 @@
     </util:list>
 
     <bean id="userP" class="com.demo.springdemo.entity.User" p:id="10" p:userName="荔枝">
+    </bean>
 
+    <bean id="HelloWorldBean" class="com.demo.springdemo.action.HelloWorld" scope="prototype">
+        <property name="name" value="Spring"></property>
     </bean>
 </beans>

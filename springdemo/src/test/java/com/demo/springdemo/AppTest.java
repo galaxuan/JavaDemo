@@ -1,7 +1,5 @@
 package com.demo.springdemo;
 
-import static org.junit.Assert.assertTrue;
-
 import com.demo.springdemo.action.HelloWorld;
 import com.demo.springdemo.action.LoginAction;
 import com.demo.springdemo.entity.Goods;
@@ -12,11 +10,12 @@ import com.demo.springdemo.utils.DataSource;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.security.Key;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * Unit test for simple App.
@@ -214,5 +213,56 @@ public class AppTest {
         User user = (User) cxt.getBean("userP");
         //执行对象的方法
         System.out.println(user.getUserName());
+    }
+
+    @Test
+    public void testAtuowire() {
+
+        //初始化配置文件：Spring加载配置文件
+        ClassPathXmlApplicationContext cxt = new ClassPathXmlApplicationContext("spring-autowire.xml");
+        //获得Spring上下文环境的对象
+        LoginAction loginAction = cxt.getBean(LoginAction.class);
+        //执行对象的方法
+        loginAction.doLogin();
+    }
+
+    @Test
+    public void testExtends() {
+
+        //初始化配置文件：Spring加载配置文件
+        ClassPathXmlApplicationContext cxt = new ClassPathXmlApplicationContext("spring-extends.xml");
+        //获得Spring上下文环境的对象
+        UserService userService = (UserService) cxt.getBean("userServiceChild");
+        //执行对象的方法
+        System.out.println(userService.getAge());
+        System.out.println(userService.getName());
+        System.out.println(userService.getType());
+    }
+
+    @Test
+    public void testHelloWorldBean() {
+
+        //初始化配置文件：Spring加载配置文件
+        ClassPathXmlApplicationContext cxt = new ClassPathXmlApplicationContext("applicationContext.xml");
+        //获得Spring上下文环境的对象
+        HelloWorld helloWorld1 = (HelloWorld) cxt.getBean("HelloWorldBean");
+
+        HelloWorld helloWorld2 = (HelloWorld) cxt.getBean("HelloWorldBean");
+        //执行对象的方法
+
+        System.out.println(helloWorld1);
+
+        System.out.println(helloWorld2);
+    }
+
+    @Test
+    public void testDataSourceProperties() {
+
+        //初始化配置文件：Spring加载配置文件
+        ClassPathXmlApplicationContext cxt = new ClassPathXmlApplicationContext("applicationContext-datasource.xml");
+        //获得Spring上下文环境的对象
+        javax.sql.DataSource dataSource = (javax.sql.DataSource) cxt.getBean("dataSource");
+        //执行对象的方法
+        System.out.println(dataSource);
     }
 }
