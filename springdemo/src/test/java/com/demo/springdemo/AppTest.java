@@ -265,4 +265,16 @@ public class AppTest {
         //执行对象的方法
         System.out.println(dataSource);
     }
+
+
+    @Test
+    public void testSpEL() {
+
+        //初始化配置文件：Spring加载配置文件
+        ClassPathXmlApplicationContext cxt = new ClassPathXmlApplicationContext("applicationContext-SpEL.xml");
+        //获得Spring上下文环境的对象
+        LoginAction loginAction = cxt.getBean(LoginAction.class);
+        //执行对象的方法
+        loginAction.doLogin();
+    }
 }
