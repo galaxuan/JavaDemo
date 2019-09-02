@@ -14,5 +14,6 @@
         <module>springbootmybatis</module>
         <module>demo0</module>
         <module>springdemo</module>
+        <module>viewdemo</module>
     </modules>
 </project>
