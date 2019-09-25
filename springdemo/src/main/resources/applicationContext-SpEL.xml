@@ -4,10 +4,14 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <bean id="userService" class="com.demo.springdemo.service.UserService"/>
+    <bean id="userService" class="com.demo.springdemo.service.UserService">
+        <property name="name" value="娜扎"></property>
+    </bean>
 
     <bean id="LoginAction" class="com.demo.springdemo.action.LoginAction">
         <property name="userService" value="#{userService}"></property>
+        <property name="username" value="#{userService.name}"></property>
+        <property name="initValue" value="#{T(java.lang.Math).PI}"></property>
     </bean>
 
 </beans>

@@ -74,4 +74,14 @@ public class UserService {
     public void findUser() {
         System.out.println("findUser....UserService");
     }
+
+    public void initMethod()
+    {
+        System.out.println("UserService.initMethod");
+    }
+
+    public void closeMethod()
+    {
+        System.out.println("UserService.closeMethod");
+    }
 }

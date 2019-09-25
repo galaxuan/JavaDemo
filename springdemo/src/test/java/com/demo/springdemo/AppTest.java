@@ -276,5 +276,18 @@ public class AppTest {
         LoginAction loginAction = cxt.getBean(LoginAction.class);
         //执行对象的方法
         loginAction.doLogin();
+        System.out.println( loginAction.getUsername());
+    }
+
+    @Test
+    public void testBeanlifecycle() {
+
+        //初始化配置文件：Spring加载配置文件
+        ClassPathXmlApplicationContext cxt = new ClassPathXmlApplicationContext("applicationContext-bean-life-cycle.xml");
+        //获得Spring上下文环境的对象
+
+        //执行对象的方法
+
+        cxt.close();
     }
 }
