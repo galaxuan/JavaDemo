@@ -1,10 +1,14 @@
 package com.demo.springdemo;
 
+import com.alibaba.druid.sql.visitor.functions.Now;
 import com.demo.springdemo.dao.IUserDao;
 import com.demo.springdemo.userservice.UserServiceFactory1;
 import com.demo.springdemo.userservice.UserServiceFactory2;
+import com.demo.springdemo.utils.CommUtil;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.Date;
 
 /**
  * @Description:
@@ -15,6 +19,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class App {
     public static void main(String[] args) {
+
+
+
 
         //IUserDao userdao = new UserDaoImpl();
         //userdao.add();

@@ -1,5 +1,6 @@
 package com.demo.springdemo;
 
+import com.demo.springdemo.action.GoodsAction;
 import com.demo.springdemo.action.HelloWorld;
 import com.demo.springdemo.action.LoginAction;
 import com.demo.springdemo.entity.Goods;
@@ -282,7 +283,6 @@ public class AppTest {
 
     @Test
     public void testBeanlifecycle() {
-
         //初始化配置文件：Spring加载配置文件
         ClassPathXmlApplicationContext cxt = new ClassPathXmlApplicationContext("applicationContext-bean-life-cycle.xml");
         //获得Spring上下文环境的对象
@@ -306,5 +306,18 @@ public class AppTest {
         userService = (UserService) cxt.getBean("instanceFactory");
 
         System.out.println(userService.getName());
+    }
+
+    @Test
+    public void testSpringScan()
+    {
+        //初始化配置文件：Spring加载配置文件
+        ClassPathXmlApplicationContext cxt = new ClassPathXmlApplicationContext("applicationContext-scan.xml");
+
+        //获得Spring上下文环境的对象
+        GoodsAction goodsAction =cxt.getBean(GoodsAction.class);
+
+        //执行对象的方法
+        goodsAction.findGoods();
     }
 }
