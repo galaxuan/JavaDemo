@@ -5,6 +5,7 @@ import com.demo.springdemo.action.LoginAction;
 import com.demo.springdemo.entity.Goods;
 import com.demo.springdemo.entity.GoodsCart;
 import com.demo.springdemo.entity.User;
+import com.demo.springdemo.factory.StaticFactory;
 import com.demo.springdemo.service.UserService;
 import com.demo.springdemo.utils.DataSource;
 import org.junit.Test;
@@ -276,7 +277,7 @@ public class AppTest {
         LoginAction loginAction = cxt.getBean(LoginAction.class);
         //执行对象的方法
         loginAction.doLogin();
-        System.out.println( loginAction.getUsername());
+        System.out.println(loginAction.getUsername());
     }
 
     @Test
@@ -287,7 +288,23 @@ public class AppTest {
         //获得Spring上下文环境的对象
 
         //执行对象的方法
-
         cxt.close();
+    }
+
+    @Test
+    public void testStaticFactory() {
+
+        //初始化配置文件：Spring加载配置文件
+        ClassPathXmlApplicationContext cxt = new ClassPathXmlApplicationContext("bean-factory.xml");
+
+        //获得Spring上下文环境的对象
+        UserService userService = (UserService) cxt.getBean("staticFactory");
+
+        //执行对象的方法
+        System.out.println(userService.getName());
+
+        userService = (UserService) cxt.getBean("instanceFactory");
+
+        System.out.println(userService.getName());
     }
 }
