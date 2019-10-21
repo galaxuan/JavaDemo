@@ -1,10 +1,17 @@
 package com.demo.springdemo.action;
 
-import com.demo.springdemo.service.GoodsService;
+import com.demo.springdemo.dao.BaseDao;
+import com.demo.springdemo.entity.GoodsClass;
+import com.demo.springdemo.service.BaseService;
+import com.demo.springdemo.service.GoodsCartService;
+import com.demo.springdemo.service.OrderFormService;
 import com.demo.springdemo.utils.CommUtil;
+import com.sun.istack.internal.Interned;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 
+import javax.annotation.Resource;
 import java.util.Date;
 
 /**
@@ -17,23 +24,26 @@ import java.util.Date;
 public class GoodsAction {
 
     @Autowired
-    private GoodsService goodsService;
+    @Qualifier("adminGoodsService")
+    private BaseService goodsService;
+
+    @Resource
+    private OrderFormService orderFormService;
+
+    @Autowired
+    private BaseDao<GoodsClass> goodClassService;
 
     @Autowired
     private CommUtil commUtil;
-
-    public GoodsService getGoodsService() {
-        return goodsService;
-    }
-
-    public void setGoodsService(GoodsService goodsService) {
-        this.goodsService = goodsService;
-    }
 
     public void findGoods() {
         System.out.println("GoodsAction.findGoods()");
         goodsService.findGoods();
 
         System.out.println(commUtil.format(new Date()));
+
+        System.out.println(orderFormService);
+
+        System.out.println(goodClassService);
     }
 }

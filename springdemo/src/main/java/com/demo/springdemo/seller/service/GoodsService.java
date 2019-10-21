@@ -1,6 +1,7 @@
-package com.demo.springdemo.service;
+package com.demo.springdemo.seller.service;
 
 import com.demo.springdemo.dao.GoodsDao;
+import com.demo.springdemo.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,11 +9,10 @@ import org.springframework.stereotype.Service;
  * @program: javademo
  * @description:
  * @author: wanggang
- * @create: 2019-09-26 16:12
+ * @create: 2019-10-09 17:10
  */
-@Service("adminGoodsService")
+@Service("sellerGoodsService")
 public class GoodsService implements BaseService {
-
     @Autowired
     private GoodsDao goodsDao;
 
