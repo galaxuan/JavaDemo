@@ -3,10 +3,10 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="helloWorld" class="com.demo.springdemo.service.UserService" init-method="initMethod" destroy-method="closeMethod">
+    <bean id="helloWorld" class="com.springdemo.service.UserService" init-method="initMethod" destroy-method="closeMethod">
     </bean>
 
-    <bean class="com.demo.springdemo.lifecycle.LifeCycleBeanPostProcessor">
+    <bean class="com.springdemo.lifecycle.LifeCycleBeanPostProcessor">
 
     </bean>
 

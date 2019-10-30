@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.demo.springbootmybatis.mapper.EmpMapper">
-    <select id="findById" parameterType="Integer" resultType="com.demo.springbootmybatis.entity.Emp">
+<mapper namespace="com.springbootmybatis.mapper.EmpMapper">
+    <select id="findById" parameterType="Integer" resultType="com.springbootmybatis.entity.Emp">
         select * from emp where empno = #{value}
     </select>
 
@@ -16,7 +16,7 @@
         </if>
     </select>
 
-    <insert id="createEmp" parameterType="com.demo.springbootmybatis.entity.Emp">
+    <insert id="createEmp" parameterType="com.springbootmybatis.entity.Emp">
         INSERT INTO `emp` (`ename`, `job`, `mgr`, `hiredate`, `sal`, `comm`, `deptno`)
         VALUES (#{ename}, #{job}, #{mgr}, #{hiredate}, #{sal}, #{comm}, #{deptno})
         <selectKey keyProperty="empno" keyColumn="empno" resultType="Integer" order="AFTER">
@@ -24,7 +24,7 @@
         </selectKey>
     </insert>
 
-    <update id="updateEmp" parameterType="com.demo.springbootmybatis.entity.Emp">
+    <update id="updateEmp" parameterType="com.springbootmybatis.entity.Emp">
         UPDATE `emp` SET `ename`=#{ename}, `job`=#{job},
          `mgr`=#{mgr}, `hiredate`=#{hiredate}, `sal`=#{sal}, `comm`=#{comm},
          `deptno`=#{deptno} WHERE `empno`=#{empno}
