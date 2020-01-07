@@ -1,5 +1,7 @@
 package com.example.entity;
 
+import org.springframework.context.annotation.Configuration;
+
 import java.util.Map;
 
 /**
@@ -8,6 +10,7 @@ import java.util.Map;
  * @author: wanggang
  * @create: 2019-10-30 11:12
  */
+@Configuration
 public class Mail {
     /**
      * 邮件发送人

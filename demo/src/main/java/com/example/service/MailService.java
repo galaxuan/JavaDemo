@@ -10,9 +10,9 @@ import com.example.entity.Mail;
  */
 
 public interface MailService {
-    void sendSimpleMail(Mail email);
-
-    void sendHtmlMail(Mail email);
-
-    void sendAttachmentsMail(Mail email);
+//    void sendSimpleMail(Mail email);
+//
+//    void sendHtmlMail(Mail email);
+//
+//    void sendAttachmentsMail(Mail email);
 }
