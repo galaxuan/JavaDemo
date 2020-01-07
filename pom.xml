@@ -12,8 +12,8 @@
         <module>demo</module>
         <module>springbootdatajpa</module>
         <module>springbootmybatis</module>
-        <module>demo0</module>
         <module>springdemo</module>
         <module>viewdemo</module>
+        <module>MBGDemo</module>
     </modules>
 </project>
