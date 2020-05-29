@@ -10,9 +10,6 @@ package com.springdemo;
 public class App {
     public static void main(String[] args) {
 
-
-
-
         //IUserDao userdao = new UserDaoImpl();
         //userdao.add();
 
