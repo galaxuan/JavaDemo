@@ -8,7 +8,7 @@
         <version>2.3.0.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.demo</groupId>
+    <groupId>com.springbootdatajpa</groupId>
     <artifactId>springbootdatajpa</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>springbootdatajpa</name>

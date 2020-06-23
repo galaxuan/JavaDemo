@@ -13,6 +13,7 @@
         <module>springbootdatajpa</module>
         <module>springbootmybatis</module>
         <module>springdemo</module>
+        <module>viewdemo</module>
         <module>MBGDemo</module>
     </modules>
 </project>
