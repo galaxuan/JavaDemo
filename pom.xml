@@ -15,5 +15,6 @@
         <module>springdemo</module>
         <module>viewdemo</module>
         <module>MBGDemo</module>
+        <module>thymeleafdemo</module>
     </modules>
 </project>
