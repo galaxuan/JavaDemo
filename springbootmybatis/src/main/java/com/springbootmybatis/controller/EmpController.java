@@ -26,7 +26,6 @@ public class EmpController {
     @RequestMapping("/emp/{id}")
     public Emp findById(@PathVariable("id") Integer id) {
         Emp emp = empService.findById(id);
-        // haha
         return emp;
     }
 

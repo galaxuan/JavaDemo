@@ -1,10 +1,8 @@
-package com.viewdemo.controller;
+package com.thymeleafdemo.controller;
 
-import org.omg.CORBA.OBJ_ADAPTER;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Arrays;
 import java.util.Map;
 
 /**
