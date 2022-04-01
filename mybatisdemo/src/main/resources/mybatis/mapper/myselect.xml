@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.wind.mybatisdemo.mapper.MySelectMapper">
+
+    <select id="isExistRentSelectList"
+            parameterType="com.wind.mybatisdemo.bean.MySelect.Params.IsExistRentSelectListParams"
+            resultType="com.wind.mybatisdemo.bean.MySelect.Entity.MySelectEntity">
+        SELECT mySelectId,userId,type,esfSubType,city,houseId,propertyType,summary FROM MySelect_${tbIndex} WITH (NOLOCK)
+        WHERE userId = #{userId} and type = 'rent'
+        AND
+        (
+        <if test="selectList != null and selectList.size > 0">
+            <foreach collection="selectList" item="item" index="index" open="(" separator=") or (" close=")">
+                esfSubType = #{item.esfSubType} and city = #{item.city} and houseId = #{item.houseId}
+                and propertyType = #{item.propertyType}
+                <if test="item.esfSubType == 'yx'">
+                    and summary = #{item.groupId}
+                </if>
+            </foreach>
+        </if>
+        )
+    </select>
+
+    <select id="isExistNewSelectList"
+            parameterType="com.wind.mybatisdemo.bean.MySelect.Params.IsExistNewSelectListParams"
+            resultType="com.wind.mybatisdemo.bean.MySelect.Entity.MySelectEntity">
+        SELECT mySelectId,userId,type,city,houseId,roomId,fangYuanId FROM MySelect_${tbIndex} WITH (NOLOCK)
+        WHERE userId = #{userId} and type = 'new'
+        AND
+        (
+        <if test="selectList != null and selectList.size > 0">
+            <foreach collection="selectList" item="item" index="index" open="(" separator=") or (" close=")">
+                <choose>
+                    <when test="item.houseId != null and item.houseId != '' and (item.roomId == null or item.roomId == '') and (item.fangYuanId == null or item.fangYuanId == '')">
+                        houseId = #{item.houseId}
+                    </when>
+                    <when test="item.houseId != null and item.houseId != '' and (item.roomId != null and item.roomId != '') and (item.fangYuanId == null or item.fangYuanId == '')">
+                        city = #{item.city} and houseId = #{item.houseId} and roomId = #{item.roomId}
+                    </when>
+                    <when test="item.houseId != null and item.houseId != '' and (item.roomId == null or item.roomId == '') and (item.fangYuanId != null and item.fangYuanId != '')">
+                        city = #{item.city} and houseId = #{item.houseId} and fangYuanId = #{item.fangYuanId}
+                    </when>
+                    <otherwise>
+                        city = #{item.city} and houseId = #{item.houseId} and roomId = #{item.roomId} and fangYuanId = #{item.fangYuanId}
+                    </otherwise>
+                </choose>
+            </foreach>
+        </if>
+        )
+    </select>
+
+    <select id="isExistEsfSelectList"
+            parameterType="com.wind.mybatisdemo.bean.MySelect.Params.IsExistEsfSelectListParams"
+            resultType="com.wind.mybatisdemo.bean.MySelect.Entity.MySelectEntity">
+        SELECT mySelectId,userId,type,esfSubType,city,houseId,propertyType,summary FROM MySelect_${tbIndex} WITH (NOLOCK)
+        WHERE userId = #{userId} and type = 'esf'
+        AND
+        (
+        <if test="selectList != null and selectList.size > 0">
+            <foreach collection="selectList" item="item" index="index" open="(" separator=") or (" close=")">
+                <if test="item.propertyType != null and item.propertyType != 3 ">
+                    houseId = #{item.houseId} and propertyType = #{item.propertyType}
+                    <if test="item.esfSubType != null and item.esfSubType != 'yx' ">
+                         and esfSubType = #{item.esfSubType}
+                    </if>
+                    <if test="item.esfSubType != null and item.esfSubType == 'yx' ">
+                        and esfSubType = #{item.esfSubType} and summary = #{item.groupId}
+                    </if>
+                </if>
+                <if test="item.propertyType != null and item.propertyType == 3">
+                    houseId = #{item.houseId} and propertyType = #{item.propertyType}
+                </if>
+            </foreach>
+        </if>
+        )
+    </select>
+
+    <insert id="addSelect" parameterType="com.wind.mybatisdemo.bean.MySelect.Entity.MySelectEntity">
+        INSERT INTO MySelect_${tbIndex}
+        (UserID,NewCode,ProjName,Face,Name,Address,Price,City,Linkurl,Type,Pricetype,HouseID,Roomnum,PropertyType,Coordx,Coordy,Guapailiang,Service,EsfSubType,ChannelType,FangYuanID,Roomid,UserName,Homeid,ServiceArea,CreateTime,Area,District,Huxing,Mianji,CaseCount,PriceCategory,KnowledgeTag,Summary,NowCity,PageID,Ext,SubSubType)
+        VALUES
+        (#{userId},#{newCode},#{projName},#{face},#{name},#{address},#{price},#{city},#{linkUrl},#{type},#{priceType},#{houseId},#{roomNum},#{propertyType},#{coordX},#{coordY},#{guaPaiLiang},#{service},#{esfSubType},#{channelType},#{fangYuanId},#{roomId},#{userName},#{homeId},#{serviceArea},getdate(),#{area},#{district},#{huXing},#{mianJi},#{caseCount},#{priceCategory},#{knowledgeTag},#{summary},#{nowCity},#{pageId},#{ext},#{subSubType});
+        <selectKey keyProperty="mySelectId" resultType="Long" order="AFTER">
+            SELECT @@identity as mySelectId
+        </selectKey>
+    </insert>
+
+</mapper>

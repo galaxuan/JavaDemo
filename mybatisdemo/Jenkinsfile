@@ -1,0 +1,17 @@
+@Library('jenkins-shared-libraries@plugin/maven-docker') _
+
+def env(){
+      // set git info : url and credentialsId
+      env.credentialsId = 'gitlab-user-jenkins'
+      env.url = 'http://gitlab.light.fang.com/C_Platform_Donet/myfangapi.git'
+}
+
+//jenkins的slave节点,不同机房不同slave,需要和运维确定
+node("sjhl-linux") {
+    env()
+    kgDefaultPipeline()
+}
+
+
+    
+

@@ -1,0 +1,83 @@
+########################################################################################################################################
+##################     文  档  适  配  分  支  : plugin/docker    ######################################################################
+##################     文  档  修  改  时  间  : 201805181639     ######################################################################
+##################    文  档  当  前  版  本  :  1.0.0            ######################################################################
+######   文  档  地   址    http://gitlab.light.fang.com/konggu/jenkins-shared-libraries/wikis/bash/plugin/maven-docker/.jenkins-ci.yml ######
+########################################################################################################################################
+
+##################################
+######## 项  目  信  息   ########
+##################################
+
+# 设置jdk版本,可选择版本:   7/8
+jdk :
+  version : 8
+
+# 设置结果的接受邮箱,多个邮箱的的话用英文分号分割
+mail :
+  to : jiangxiangji@fang.com
+
+
+##################################
+###### 服  务  器  信  息 ########
+##################################
+
+# profiles : 设置项目的profile环境
+profiles :
+  - prod
+  - test
+
+
+# profiles中的test环境的服务器信息
+test :
+
+  # artifact : 设置需要传输的二进制包
+  artifact : myinterapi/target/myinterapi-0.0.1-SNAPSHOT.jar
+
+
+  #  deployType : 设置部署的方式,可选值 : auto/manual/none
+  deployType : auto
+
+
+
+  # nodeLabel : jenkins的docker的slave节点
+  nodeLabel : xg-docker
+
+  # Dockerfile在的路径
+  dockerFile : myinterapi/docker/Dockerfile
+
+  # dockerhub的地址
+  dockerhubRegistry : https://dockerhub.3g.fang.com
+
+  # 在jenkins的credentials填写的信息的id,最好用jenkins
+  jenkinsCredentialsId : dockerhubjiangxiangji
+  # 设置项目在dockerhub中的项目名
+  # 自动拼写规则 : dockerhubProject名称/jenkins任务名称:jenkins构建号
+  dockerhubProject : myfangapi/myinterapi-test:v${buildVersion}
+prod :
+
+# artifact : 设置需要传输的二进制包
+  artifact : myinterapi/target/myinterapi-0.0.1-SNAPSHOT.jar
+
+
+#  deployType : 设置部署的方式,可选值 : auto/manual/none
+  deployType : auto
+
+
+
+# nodeLabel : jenkins的docker的slave节点
+  nodeLabel : xg-docker
+
+# Dockerfile在的路径
+  dockerFile : myinterapi/docker/Dockerfile
+
+# dockerhub的地址
+  dockerhubRegistry : https://dockerhub.3g.fang.com
+
+# 在jenkins的credentials填写的信息的id,最好用jenkins
+  jenkinsCredentialsId : dockerhubjiangxiangji
+# 设置项目在dockerhub中的项目名
+# 自动拼写规则 : dockerhubProject名称/jenkins任务名称:jenkins构建号
+  dockerhubProject : myfangapi/myinterapi:v${buildVersion}
+
+
