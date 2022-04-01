@@ -7,12 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-/**
- * @program: demo
- * @description:
- * @author: wang gang
- * @create: 2019-03-27 15:24
- */
 public interface DeptRespository extends JpaRepository<Dept, Integer> {
 
     public List<Dept> findByDname (String dname);

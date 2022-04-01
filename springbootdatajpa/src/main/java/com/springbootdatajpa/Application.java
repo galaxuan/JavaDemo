@@ -14,13 +14,6 @@ import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @Description:
- * @Param:
- * @return:
- * @Author: wanggang
- * @date: 2019-3-25
- */
 @SpringBootApplication
 public class Application {
 

@@ -13,13 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 
-/**
- * @program: demo
- * @description:
- * @author: wang gang
- * @create: 2019-03-28 09:54
- */
-
 @RestController
 @Transactional(rollbackFor = Exception.class)
 public class EmpController {

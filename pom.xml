@@ -11,9 +11,8 @@
     <modules>
         <module>demo</module>
         <module>springbootdatajpa</module>
-        <module>springbootmybatis</module>
         <module>springdemo</module>
         <module>MBGDemo</module>
-        <module>thymeleafdemo</module>
+        <module>mybatisdemo</module>
     </modules>
 </project>

@@ -12,12 +12,6 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * @program: demo
- * @description:
- * @author: wang gang
- * @create: 2019-03-27 15:28
- */
 @Controller
 @RequestMapping("/dept")
 public class DeptController {
