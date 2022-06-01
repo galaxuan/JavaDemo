@@ -53,4 +53,12 @@ public class Person {
     public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
+
+    public Person(int id, String name, String birthday) {
+        this.id = id;
+        this.name = name;
+        this.birthday = birthday;
+    }
+
+
 }
