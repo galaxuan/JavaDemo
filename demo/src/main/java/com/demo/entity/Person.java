@@ -4,37 +4,42 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
-/**
- * @program: javademo
- * @description:
- * @author: wang gang
- * @create: 2020-03-24 17:45
- */
+
 @PropertySource(value = {"classpath:person.properties"})
 @Component
 @ConfigurationProperties(prefix = "person")
 public class Person {
 
-    private int id;
+    private Integer id;
 
     private String name;
 
-    private String birthday;
+    private Integer age;
+
+    private Integer salary;
 
     @Override
     public String toString() {
         return "Person{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", birthday='" + birthday + '\'' +
+                ", age=" + age +
+                ", salary=" + salary +
                 '}';
     }
 
-    public int getId() {
+    public Person(Integer id, String name, Integer age, Integer salary) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.salary = salary;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -46,19 +51,19 @@ public class Person {
         this.name = name;
     }
 
-    public String getBirthday() {
-        return birthday;
+    public Integer getAge() {
+        return age;
     }
 
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
-    public Person(int id, String name, String birthday) {
-        this.id = id;
-        this.name = name;
-        this.birthday = birthday;
+    public Integer getSalary() {
+        return salary;
     }
 
-
+    public void setSalary(Integer salary) {
+        this.salary = salary;
+    }
 }

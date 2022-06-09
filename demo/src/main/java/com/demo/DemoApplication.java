@@ -12,17 +12,15 @@ import java.util.List;
 @EnableAsync
 @PropertySource("classpath:config.properties")
 public class DemoApplication {
-
     public static void main(String[] args) {
 
-        List<String> list = new ArrayList<>(2);
+        List<String> list = new ArrayList<>();
         list.add("guan");
         list.add("bao");
 
-        list.stream().filter(s=)
+        list.stream().filter(s -> s.contains("a")).limit(2).forEach(System.out::println);
 
         SpringApplication.run(DemoApplication.class, args);
     }
-
 }
 
