@@ -1,13 +1,13 @@
 package com.demo;
 
 import com.demo.entity.Person;
+import jdk.nashorn.internal.runtime.regexp.joni.constants.CCSTATE;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 @SpringBootTest
 public class LambdaTest {
@@ -51,4 +51,67 @@ public class LambdaTest {
             System.out.println(per);
         }
     }
+
+    /**
+     * Consumer<T> 消费性接口
+     */
+    @Test
+    public void test4() {
+        ha(10000, s -> System.out.println("赚了" + s + "元"));
+    }
+
+    private void ha(double money, Consumer<Double> consumer) {
+        consumer.accept(money);
+    }
+
+    /**
+     * Supplier<T> 供给性接口
+     */
+    @Test
+    public void test5() {
+        List<Integer> numList = getNumList(10, () -> (int) (Math.random() * 100));
+
+        for (Integer i : numList) {
+            System.out.println(i);
+        }
+    }
+
+    private List<Integer> getNumList(int num, Supplier<Integer> supplier) {
+        List<Integer> list = new ArrayList<>();
+
+        for (int i = 0; i < num; i++) {
+            Integer n = supplier.get();
+            list.add(n);
+        }
+
+        return list;
+    }
+
+    /**
+     * Function<T, R> 接口
+     */
+    @Test
+    public void test6() {
+
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
